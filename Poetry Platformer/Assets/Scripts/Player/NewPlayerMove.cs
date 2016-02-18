@@ -1,0 +1,121 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class NewPlayerMove : MonoBehaviour
+{
+
+    public float speed;
+    public float jumpSpeed;
+    public float jumpHeight;
+
+    float flipMove;
+    public bool isFacingRight;
+    [Space(5)]
+    public float jumpRayLength;
+    public bool canJump;
+    public LayerMask groundLayer;
+
+
+    private Animator playerAnimator;
+    private Rigidbody2D rig2D;
+
+    // Use this for initialization
+    void Start()
+    {
+        playerAnimator = GetComponent<Animator>();
+
+        rig2D = GetComponent<Rigidbody2D>();
+
+
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+
+            Vector2 moveQauntity = new Vector2(speed, 0);
+            rig2D.velocity = new Vector2(moveQauntity.x, rig2D.velocity.y);
+
+
+            flipMove = 1;
+
+
+            playerAnimator.SetBool("isRunning", true);
+
+
+        }
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+
+
+            Vector2 moveQauntity = new Vector2(-speed, 0);
+            rig2D.velocity = new Vector2(moveQauntity.x, rig2D.velocity.y);
+
+
+            flipMove = -1;
+
+            playerAnimator.SetBool("isRunning", true);
+
+
+        }
+        else
+        {
+            playerAnimator.SetBool("isRunning", false);
+        }
+
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, jumpRayLength, groundLayer);  //PlayerMask and rayLength are public variables that need to be set 
+        Debug.DrawRay(transform.position, Vector2.left, Color.red, jumpRayLength);
+
+        if (hit)
+        {
+            print("Ray");
+
+            //print(hit.ToString());
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+
+         
+                rig2D.velocity = Vector2.up * jumpHeight;
+
+                playerAnimator.SetBool("isJumping", true);
+
+
+
+            }
+            else
+            {
+                playerAnimator.SetBool("isJumping", false);
+            }
+
+        }
+      
+
+        if (flipMove > 0 && isFacingRight)
+        {
+            Flip();
+        }
+        else if (flipMove < 0 && !isFacingRight)
+        {
+            Flip();
+        }
+
+    }
+
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
+
+
+
+}
+
