@@ -35,6 +35,13 @@ public class NewPlayerMove : MonoBehaviour
     void Update()
     {
 
+        Controls();
+
+    }
+
+    void Controls()
+    {
+        // PC
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
 
@@ -68,19 +75,55 @@ public class NewPlayerMove : MonoBehaviour
             playerAnimator.SetBool("isRunning", false);
         }
 
+        // Xbox Controller
+        if (Input.GetAxis("Horizontal") >= 1)
+        {
+            // print("Right");
+
+            Vector2 moveQauntity = new Vector2(speed, 0);
+            rig2D.velocity = new Vector2(moveQauntity.x, rig2D.velocity.y);
+
+
+            flipMove = 1;
+
+
+            playerAnimator.SetBool("isRunning", true);
+
+        }
+        else if (Input.GetAxis("Horizontal") < 0)
+        {
+            // print("Left");
+
+
+            Vector2 moveQauntity = new Vector2(-speed, 0);
+            rig2D.velocity = new Vector2(moveQauntity.x, rig2D.velocity.y);
+
+
+            flipMove = -1;
+
+            playerAnimator.SetBool("isRunning", true);
+
+        }
+        else
+        {
+            playerAnimator.SetBool("isRunning", false);
+        }
+
+
+
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, jumpRayLength, groundLayer);  //PlayerMask and rayLength are public variables that need to be set 
         Debug.DrawRay(transform.position, Vector2.left, Color.red, jumpRayLength);
 
         if (hit)
         {
-            print("Ray");
+            // print("Ray");
 
             //print(hit.ToString());
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Jump"))
             {
 
-         
+
                 rig2D.velocity = Vector2.up * jumpHeight;
 
                 playerAnimator.SetBool("isJumping", true);
@@ -94,7 +137,7 @@ public class NewPlayerMove : MonoBehaviour
             }
 
         }
-      
+
 
         if (flipMove > 0 && isFacingRight)
         {
@@ -104,7 +147,6 @@ public class NewPlayerMove : MonoBehaviour
         {
             Flip();
         }
-
     }
 
     void Flip()
