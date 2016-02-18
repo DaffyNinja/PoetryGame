@@ -8,7 +8,7 @@ public class HeadTrig : MonoBehaviour
 
     GameObject parentObj;
 
-   // public bool beenHit;
+    // public bool beenHit;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class HeadTrig : MonoBehaviour
             Destroy(parentObj);
             Destroy(gameObject);
 
-           // beenHit = true;
+            // beenHit = true;
 
         }
 

@@ -24,15 +24,15 @@ public class Spikes : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-            print("HIT!");
+    //void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    if (col.gameObject.tag == "Player")
+    //    {
+    //        //print("HIT!");
 
-            //col.transform.position = col.GetComponent<PlayerMove>().checkPointPos;
+    //        col.transform.position = col.GetComponent<PlayerMove>().checkPointPos;
 
-            //Application.LoadLevel(Application.loadedLevel);
-        }
-    }
+    //        //Application.LoadLevel(Application.loadedLevel);
+    //    }
+    //}
 }

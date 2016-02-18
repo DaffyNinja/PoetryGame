@@ -5,8 +5,11 @@ public class NewPlayerMove : MonoBehaviour
 {
 
     public float speed;
-    public float jumpSpeed;
+    public float sprintSpeed;
     public float jumpHeight;
+
+    float startSpeed;
+
 
     float flipMove;
     public bool isFacingRight;
@@ -14,6 +17,8 @@ public class NewPlayerMove : MonoBehaviour
     public float jumpRayLength;
     public bool canJump;
     public LayerMask groundLayer;
+
+    public Transform checkPointPos;
 
 
     private Animator playerAnimator;
@@ -26,8 +31,7 @@ public class NewPlayerMove : MonoBehaviour
 
         rig2D = GetComponent<Rigidbody2D>();
 
-
-
+        startSpeed = speed;
 
     }
 
@@ -74,6 +78,17 @@ public class NewPlayerMove : MonoBehaviour
         {
             playerAnimator.SetBool("isRunning", false);
         }
+
+        //Sprinting
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            speed = sprintSpeed;
+        }
+        else
+        {
+            speed = startSpeed;
+        }
+     
 
         // Xbox Controller
         if (Input.GetAxis("Horizontal") >= 1)
@@ -155,6 +170,14 @@ public class NewPlayerMove : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Death")
+        {
+            transform.position = checkPointPos.position;
+        }
     }
 
 

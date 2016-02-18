@@ -17,7 +17,7 @@ public class Checkpoint : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
-            col.GetComponent<PlayerMove>().checkPointPos = gameObject.transform.position;
+            col.GetComponent<NewPlayerMove>().checkPointPos = gameObject.transform;
         }
     }
 }
