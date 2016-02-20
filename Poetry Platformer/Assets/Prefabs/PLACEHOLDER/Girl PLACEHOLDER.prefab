@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11458422}
   m_Layer: 0
   m_Name: Girl PLACEHOLDER
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.603, y: -2.946, z: 0}
+  m_LocalPosition: {x: 142.28, y: -4.45, z: 0}
   m_LocalScale: {x: 0.25, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ Rigidbody2D:
   m_Mass: 1.5547168
   m_LinearDrag: 4.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -92,14 +92,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7.5
-  jumpSpeed: 0
-  jumpHeight: 5
+  sprintSpeed: 12
+  jumpHeight: 20
   isFacingRight: 0
-  jumpRayLength: 0
+  jumpRayLength: 1.05
   canJump: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
+  checkPointPos: {fileID: 0}
 --- !u!212 &21211508
 SpriteRenderer:
   m_ObjectHideFlags: 1
