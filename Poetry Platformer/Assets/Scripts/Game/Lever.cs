@@ -9,6 +9,7 @@ public class Lever : MonoBehaviour
     public float posX;
     public float posY;
 
+   
 
     bool canSwitch;
 
@@ -21,6 +22,8 @@ public class Lever : MonoBehaviour
         objStartingPos = affectedObj.transform.position;
 
         objStartingRot = affectedObj.transform.localRotation;
+
+        
     }
 
     // Update is called once per frame
@@ -42,7 +45,7 @@ public class Lever : MonoBehaviour
         {
             affectedObj.transform.rotation = new Quaternion(0, 0, 0, 0);
 
-            affectedObj.transform.position = new Vector2(5, -1f);
+            affectedObj.transform.position = new Vector2(posX, posY);
         }
         else
         {

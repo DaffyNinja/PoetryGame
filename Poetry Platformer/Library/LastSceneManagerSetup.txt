@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/!Scenes/TEST/Enemies TEST.unity
+- path: Assets/!Scenes/TEST/Section 2 Level 1 TEST.unity
   isLoaded: 1
   isActive: 1
