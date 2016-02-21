@@ -18,18 +18,22 @@ public class HeadTrig : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        // When player its it head
         if (col.gameObject.tag == "Player")
         {
+            if (col.gameObject.GetComponent<NewPlayerMove>().isJumping == true)
+            {
 
-            col.GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpBoost;
+                col.GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpBoost;
 
-            print("Trig");
+                print("Trig");
 
-            Destroy(parentObj);
-            Destroy(gameObject);
+                Destroy(parentObj);
+                Destroy(gameObject);
 
-            // beenHit = true;
+                // beenHit = true;
 
+            }
         }
 
     }

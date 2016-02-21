@@ -5,11 +5,16 @@ using UnityEngine.SceneManagement;
 public class Blob : MonoBehaviour
 {
 
-    public float speed;
+    public float speed;            
+
+    public bool moveRight;
+    public bool moveLeft;
+
+    public float rayLength;
+    public LayerMask hitLayer;
 
     Rigidbody2D rig2D;
 
-    //HeadTrig hTrig;
 
 
     // Use this for initialization
@@ -17,29 +22,62 @@ public class Blob : MonoBehaviour
     {
         rig2D = GetComponent<Rigidbody2D>();
 
-        //hTrig = GetComponentInChildren<HeadTrig>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 moveQauntity = new Vector2(-speed, 0);
-        rig2D.velocity = new Vector2(moveQauntity.x, rig2D.velocity.y);
+        Movement();
+
+    }
+
+    void Movement()
+    {
+
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, rayLength, hitLayer);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, rayLength, hitLayer);
+
+        Debug.DrawRay(transform.position, Vector2.left, Color.red, rayLength);
+        Debug.DrawRay(transform.position, Vector2.right, Color.red, rayLength);
+
+        if (hitLeft)
+        {
+            moveLeft = false;
+            moveRight = true;
+        }
+        else if (hitRight)
+        {
+            moveLeft = true; 
+            moveRight = false;
+        }
+
+        if (moveLeft)
+        {
+            Vector2 moveQauntity = new Vector2(-speed, 0);
+            rig2D.velocity = new Vector2(moveQauntity.x, rig2D.velocity.y);
+        }
+        else if (moveRight)
+        {
+            Vector2 moveQauntity = new Vector2(speed, 0);
+            rig2D.velocity = new Vector2(moveQauntity.x, rig2D.velocity.y);
+
+        }
+
 
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        //if (!hTrig.beenHit)
-       // {
-            if (col.gameObject.tag == "Player")
-            {
 
-                print("Hit");
+        if (col.gameObject.tag == "Player")
+        {
 
-                //    EditorSceneManager.LoadScene(EditorSceneManager.loadedSceneCount);
-            }
-        //}
+
+
+            print("Hit");
+
+
+        }
+
     }
 }

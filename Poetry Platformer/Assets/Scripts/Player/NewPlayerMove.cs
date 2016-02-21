@@ -16,6 +16,7 @@ public class NewPlayerMove : MonoBehaviour
     [Space(5)]
     public float jumpRayLength;
     public bool canJump;
+    public bool isJumping;
     public LayerMask groundLayer;
 
     public Transform checkPointPos;
@@ -135,15 +136,23 @@ public class NewPlayerMove : MonoBehaviour
 
                 playerAnimator.SetBool("isJumping", true);
 
+                isJumping = true;
+
 
 
             }
             else
             {
-                playerAnimator.SetBool("isJumping", false);
+                isJumping = false;
             }
+           
+        }
+        else
+        {
+            playerAnimator.SetBool("isJumping", false);
 
         }
+
 
 
         if (flipMove > 0 && isFacingRight)
