@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Lever : MonoBehaviour
 {
-    public bool activated;
+    
     public GameObject affectedObj;
+    public bool activated;
     [Space(5)]
     public float posX;
     public float posY;
