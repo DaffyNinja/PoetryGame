@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/!Scenes/Friend Mechanic Test.unity
+- path: Assets/!Scenes/TEST/Lever Test.unity
   isLoaded: 1
   isActive: 1

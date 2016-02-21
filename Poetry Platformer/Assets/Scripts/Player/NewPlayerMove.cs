@@ -79,15 +79,7 @@ public class NewPlayerMove : MonoBehaviour
             playerAnimator.SetBool("isRunning", false);
         }
 
-        //Sprinting
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            speed = sprintSpeed;
-        }
-        else
-        {
-            speed = startSpeed;
-        }
+  
      
 
         // Xbox Controller
