@@ -19,6 +19,9 @@ public class NewPlayerMove : MonoBehaviour
     public bool isJumping;
     public LayerMask groundLayer;
 
+    public bool canMoveLadder;
+    public float ladderSpeed;
+
     public Transform checkPointPos;
 
 
@@ -46,7 +49,7 @@ public class NewPlayerMove : MonoBehaviour
 
     void Controls()
     {
-        // PC
+        // PC                                                        
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
 
@@ -151,6 +154,25 @@ public class NewPlayerMove : MonoBehaviour
         {
             playerAnimator.SetBool("isJumping", false);
 
+        }
+
+        //LadderMove 
+        if (canMoveLadder)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.Translate(0, ladderSpeed, 0);
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                transform.Translate(0, -ladderSpeed, 0);
+            }
+
+            rig2D.gravityScale = 0;
+        }
+        else
+        {
+            rig2D.gravityScale = 4;
         }
 
 

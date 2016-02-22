@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Ladder : MonoBehaviour
 {
+    public bool inLadder;
+
+    public NewPlayerMove newPlayMov;
 
     // Use this for initialization
     void Start()
@@ -18,9 +21,34 @@ public class Ladder : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
+        
+
         if (col.gameObject.tag == "Player")
         {
-            print("Entered");
+            newPlayMov = col.gameObject.GetComponent<NewPlayerMove>();
+
+            newPlayMov.canMoveLadder = true;
+
+           // print("Entered");
+
+            inLadder = true;
+
         }
     }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            //print("Exit");
+
+           // newPlayMov = col.gameObject.GetComponent<NewPlayerMove>();
+
+            newPlayMov.canMoveLadder = false;
+
+            inLadder = false;
+
+        }
+    }
+
 }

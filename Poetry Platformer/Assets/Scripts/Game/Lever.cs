@@ -32,9 +32,6 @@ public class Lever : MonoBehaviour
         handleStartingRot = leverHandle.rotation;
 
 
-
-
-
     }
 
     // Update is called once per frame
