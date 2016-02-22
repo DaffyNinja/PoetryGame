@@ -3,14 +3,18 @@ using System.Collections;
 
 public class Lever : MonoBehaviour
 {
-    
-    public GameObject affectedObj;
-    public bool activated;
-    [Space(5)]
-    public float posX;
-    public float posY;
 
-   
+    public GameObject affectedObj;
+    public float zAngle;
+    //[Space(5)]
+    //public float posX;
+    //public float posY;
+
+    public bool activated;
+
+    Transform leverHandle;
+    public float handleRot;
+    Quaternion handleStartingRot;
 
     bool canSwitch;
 
@@ -24,7 +28,13 @@ public class Lever : MonoBehaviour
 
         objStartingRot = affectedObj.transform.localRotation;
 
-        
+        leverHandle = gameObject.transform.GetChild(0);
+        handleStartingRot = leverHandle.rotation;
+
+
+
+
+
     }
 
     // Update is called once per frame
@@ -44,15 +54,17 @@ public class Lever : MonoBehaviour
 
         if (activated)
         {
-            affectedObj.transform.rotation = new Quaternion(0, 0, 0, 0);
+            affectedObj.transform.localRotation = Quaternion.Euler(0, 0, zAngle);
+            leverHandle.transform.localRotation = Quaternion.Euler(0, 0, handleRot);
 
-            affectedObj.transform.position = new Vector2(posX, posY);
+            // affectedObj.transform.position = new Vector2(posX, posY);
         }
         else
         {
-            affectedObj.transform.rotation = objStartingRot;
+            affectedObj.transform.localRotation = objStartingRot;
+            leverHandle.transform.localRotation = handleStartingRot;
 
-            affectedObj.transform.position = objStartingPos;
+            //affectedObj.transform.position = objStartingPos;
         }
 
     }

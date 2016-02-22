@@ -5,15 +5,15 @@ public class LeverTwo : MonoBehaviour
 {
     public GameObject affectedObj1;
 
-    public float obj1PosX;
-    public float obj1PosY;
+   // public float obj1PosX;
+   // public float obj1PosY;
 
     public float zRot1;
     [Space(5)]
     public GameObject affectedObj2;
 
-    public float obj2PosX;
-    public float obj2PosY;
+    //public float obj2PosX;
+   // public float obj2PosY;
 
     public float zRot2;
 
@@ -52,19 +52,19 @@ public class LeverTwo : MonoBehaviour
 
         if (activated)
         {
-            affectedObj1.transform.rotation = new Quaternion(0, 0, zRot1, 0);
-            affectedObj1.transform.position = new Vector2(obj1PosX, obj1PosY);
+            affectedObj1.transform.localRotation = Quaternion.Euler(0, 0, zRot1);
+           // affectedObj1.transform.position = new Vector2(obj1PosX, obj1PosY);
 
-            affectedObj2.transform.rotation = new Quaternion(0, 0, zRot2, 0);
-            affectedObj2.transform.position = new Vector2(obj2PosX, obj2PosY);
+            affectedObj2.transform.rotation = Quaternion.Euler(0, 0, zRot2);
+           // affectedObj2.transform.position = new Vector2(obj2PosX, obj2PosY);
         }
         else
         {
             affectedObj1.transform.rotation = objStartingRot1;
-            affectedObj1.transform.position = objStartingPos1;
+           // affectedObj1.transform.position = objStartingPos1;
 
             affectedObj2.transform.rotation = objStartingRot2;
-            affectedObj2.transform.position = objStartingPos2;
+           // affectedObj2.transform.position = objStartingPos2;
         }
 
     }
